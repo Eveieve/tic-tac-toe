@@ -23,7 +23,7 @@ function displayGameboard() {
 displayGameboard();
 
 function updateGameboard() {
-  grid.firstChild.remove();
+  grid.childNodes.remove();
   gameBoard.forEach(displayGameboard);
 }
 // console.log(grid);
