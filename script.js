@@ -9,37 +9,43 @@ console.log(playerOne);
 const playerTwo = Player("Steve", "O");
 console.log(playerTwo);
 
-gameboard = ["O", "O", "O", "X", "O", "X", "O", "X", "O"];
+const gameboardArr = ["O", "O", "O", "X", "O", "X", "O", "X", "O"];
 
-const displayGameboard = () => gameboard;
-
-let cellMark = 0;
-
-//Things cell has to do
-function cell() {
-  const addMark = (playerMark) => {
-    cellMark = playerMark;
-  };
-  //check if cell is empty
-  const getMark = (cellMark) => cellMark;
-
-  return { addMark, getMark };
+//function to render contents of gameboard array to the page
+function displayGameboard() {
+  const boardDOM = document.querySelector(".grid");
+  gameboardArr.forEach((mark, index) => {
+    const markDOM = document.createElement("div");
+    markDOM.textContent = `${mark}`;
+    boardDOM.appendChild(markDOM);
+    console.log(mark, index);
+  });
 }
-//Set up function to render contents of gameboard array to the page
-// function displayGameboard() {
-//   const boardDOM = document.querySelector(".grid");
-//   gameboardArr.forEach(function (mark, index) {
-//     const markDOM = document.createElement("div");
-//     markDOM.textContent = `${mark}`;
-//     boardDOM.appendChild(markDOM);
-//     console.log(mark, index);
-//   });
-// }
-// displayGameboard();
-//attach an event listener to each cell
-//to turn it to the player's marker
+displayGameboard();
 
-// function updateGameboard() {
-//   grid.childNodes.remove();
-//   gameBoard.forEach(displayGameboard);
-// }
+// function to check whether cell is empty
+const checkMark = () => {
+  for (let i = 0; i < gameboardArr.length; i++) {
+    if (gameboardArr[i] === undefined) {
+      const availableCell = gameboardArr[i];
+    }
+  }
+  if (availableCell === 0) return; //endgame if there's no available cell
+};
+// function to add Mark
+const addMark = (index, playerMark) => {
+  gameboardArr[index] = playerMark;
+};
+
+//render the updated status of gameboard
+function updateGameboard() {
+  const grid = document.querySelector(".grid");
+  console.log(grid);
+
+  console.log(grid.childNodes);
+
+  for (let i = 1; i < grid.childNodes.length; i++) {
+    console.log("remove previous gameboard");
+    grid.childNodes[i].remove();
+  }
+}
