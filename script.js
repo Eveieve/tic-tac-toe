@@ -1,19 +1,6 @@
-// factory to return object
-const Player = (name, mark) => {
-  return { name, mark };
-};
-// Object for each player
-const playerOne = Player("Jim", "X");
-console.log(playerOne.mark);
-console.log(playerOne.name);
-
-const playerTwo = Player("Steve", "O");
-console.log(playerTwo.mark);
-console.log(playerTwo.name);
-
 const gameboardArr = ["", "", "", "", "", "", "", "", ""];
 
-function playRound(player, mark) {
+function Mark(player, mark) {
   let cell = "";
   const addMark = (mark) => (cell = mark);
   const getMark = () => mark;
@@ -41,4 +28,30 @@ function updateGameboard() {
     console.log("remove previous gameboard");
     grid.childNodes[i].remove();
   }
+}
+
+// factory to return object
+const Player = (name, mark) => {
+  return { name, mark };
+};
+// Object for each player
+
+function playRound() {
+  let gameCount = 1;
+  addMark();
+  updateGameboard();
+  gameCount++;
+}
+const playerOne = Player("One", "O");
+
+const playerTwo = Player("Two", "X");
+
+function GameController() {
+  const switchTurn = () => {
+    if (gameCount % 2 !== 0) {
+      console.log(`${PlayerOne.name}'s turn!`);
+    } else console.log(`${PlayerTwo.name}'s turn!`);
+
+    return { switchTurn };
+  };
 }
