@@ -1,16 +1,24 @@
 // factory to return object
-const Player = (name, marker) => {
-  return { name, marker };
+const Player = (name, mark) => {
+  return { name, mark };
 };
 // Object for each player
 const playerOne = Player("Jim", "X");
-console.log(playerOne);
+console.log(playerOne.mark);
+console.log(playerOne.name);
 
 const playerTwo = Player("Steve", "O");
-console.log(playerTwo);
+console.log(playerTwo.mark);
+console.log(playerTwo.name);
 
-const gameboardArr = ["O", "O", "O", "X", "O", "X", "O", "X", "O"];
+const gameboardArr = ["", "", "", "", "", "", "", "", ""];
 
+function playRound(player, mark) {
+  let cell = "";
+  const addMark = (mark) => (cell = mark);
+  const getMark = () => mark;
+  return { addMark, getMark };
+}
 //function to render contents of gameboard array to the page
 function displayGameboard() {
   const boardDOM = document.querySelector(".grid");
@@ -21,21 +29,6 @@ function displayGameboard() {
     console.log(mark, index);
   });
 }
-displayGameboard();
-
-// function to check whether cell is empty
-const checkMark = () => {
-  for (let i = 0; i < gameboardArr.length; i++) {
-    if (gameboardArr[i] === undefined) {
-      const availableCell = gameboardArr[i];
-    }
-  }
-  if (availableCell === 0) return; //endgame if there's no available cell
-};
-// function to add Mark
-const addMark = (index, playerMark) => {
-  gameboardArr[index] = playerMark;
-};
 
 //render the updated status of gameboard
 function updateGameboard() {
