@@ -9,8 +9,8 @@ function Gameboard() {
   const boardArr = ["O", "X", "", "", "", "", "", "", ""];
   const getBoard = () => boardArr;
 
-  const dropMark = (mark, index) => {
-    boardArr[index] = mark; //someone's mark
+  const dropMark = (index) => {
+    boardArr[index] = gameControl.activePlayer.mark; //activePlayer's mark
   };
 
   return { getBoard, dropMark };
