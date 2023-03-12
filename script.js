@@ -10,15 +10,7 @@ function Gameboard() {
   const getBoard = () => boardArr;
 
   const dropMark = (mark, index) => {
-    let availableCell;
-    for (let i = 0; i < boardArr.length; i++) {
-      if (boardArr[i] === "") {
-        boardArr[i] = mark;
-      } else if (availableCell !== "" && availableCell === 0) {
-        console.log("No more cells");
-        //end game
-      }
-    }
+    boardArr[index] = mark;
   };
 
   return { getBoard, dropMark };
@@ -40,12 +32,12 @@ function GameController() {
 
   const switchTurn = () =>
     (activePlayer =
-      activePlayer === playerOne.name ? playerOne.name : playerTwo.name);
+      activePlayer === playerOne.name ? playerTwo.name : playerOne.name);
 
   const printTurn = () =>
     activePlayer === playerOne.name
       ? console.log(`${activePlayer}'s turn!`)
-      : console.log(`${playerTwo.name}'s turn!`); //isn't right
+      : console.log(`${activePlayer}'s turn!`); //isn't right
   return { switchTurn, printTurn };
 }
 
@@ -53,11 +45,12 @@ const gameControl = GameController();
 
 function playRound() {
   updateGameboard();
-  gameControl.switchTurn();
-  gameControl.printTurn();
   game.dropMark(playerOne.mark);
+  gameControl.printTurn();
+  gameControl.switchTurn();
 }
 
+playRound();
 playRound();
 
 //DOM
