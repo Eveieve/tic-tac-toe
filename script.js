@@ -1,61 +1,40 @@
-function Gameboard() {
-  const boardArr = ["", "", "", "", "", "", "", "", ""];
-  const getBoard = () => boardArr;
-
-  const dropMark = () => {
-    let availableCell;
-
-    for (let i = 0; i < boardArr.length; i++) {
-      if (boardArr[i] === "") {
-        availableCell = boardArr[i];
-        availableCell = playerOne.mark;
-      } else if (availableCell !== "" && availableCell === 0) {
-        return; //end game
-      }
-    }
-  };
-
-  return { boardArr, getBoard, dropMark };
-}
-
-console.log(Gameboard.dropMark()); //not a function
-
 const Player = (name, mark) => {
   return { name, mark };
 };
 
 const playerOne = Player("One", "O");
-// console.log(playerOne.mark);
 const playerTwo = Player("Two", "X");
 
-//render the updated status of gameboard
+function Gameboard() {
+  const boardArr = ["O", "X", "", "", "", "", "", "", ""];
+  const getBoard = () => boardArr;
+
+  const dropMark = (mark, index) => {
+    let availableCell;
+    for (let i = 0; i < boardArr.length; i++) {
+      if (boardArr[i] === "") {
+        boardArr[i] = mark;
+      } else if (availableCell !== "" && availableCell === 0) {
+        console.log("No more cells");
+        //end game
+      }
+    }
+  };
+
+  return { getBoard, dropMark };
+}
+const game = Gameboard();
+
 function updateGameboard() {
   const grid = document.querySelector(".grid");
-  console.log(grid);
-
-  console.log(grid.childNodes);
 
   for (let i = 1; i < grid.childNodes.length; i++) {
     console.log("remove previous gameboard");
     grid.childNodes[i].remove();
   }
+  showGameboard();
 }
 
-function playRound() {
-  GameController.switchTurn;
-  dropMark();
-  updateGameboard();
-}
-//DOM
-function showGameboard() {
-  const boardDOM = document.querySelector(".grid");
-  boardArr.forEach((mark, index) => {
-    const markDOM = document.createElement("div");
-    markDOM.textContent = `${mark}`;
-    boardDOM.appendChild(markDOM);
-    console.log(mark, index);
-  });
-}
 function GameController() {
   let activePlayer = playerOne.name;
 
@@ -65,7 +44,29 @@ function GameController() {
 
   const printTurn = () =>
     activePlayer === playerOne.name
-      ? console.log(`${playerOne.name}'s turn!`)
-      : console.log(`${playerTwo.name}'s turn!`);
+      ? console.log(`${activePlayer}'s turn!`)
+      : console.log(`${playerTwo.name}'s turn!`); //isn't right
   return { switchTurn, printTurn };
+}
+
+const gameControl = GameController();
+
+function playRound() {
+  updateGameboard();
+  gameControl.switchTurn();
+  gameControl.printTurn();
+  game.dropMark(playerOne.mark);
+}
+
+playRound();
+
+//DOM
+function showGameboard() {
+  const boardDOM = document.querySelector(".grid");
+  game.getBoard().forEach((mark, index) => {
+    const markDOM = document.createElement("div");
+    markDOM.textContent = `${mark}`;
+    boardDOM.appendChild(markDOM);
+    console.log(mark, index);
+  });
 }
