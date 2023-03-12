@@ -10,7 +10,7 @@ function Gameboard() {
   const getBoard = () => boardArr;
 
   const dropMark = (mark, index) => {
-    boardArr[index] = mark;
+    boardArr[index] = mark; //someone's mark
   };
 
   return { getBoard, dropMark };
@@ -28,31 +28,30 @@ function updateGameboard() {
 }
 
 function GameController() {
-  let activePlayer = playerOne.name;
+  let activePlayer = playerOne;
 
   const switchTurn = () =>
-    (activePlayer =
-      activePlayer === playerOne.name ? playerTwo.name : playerOne.name);
-
+    (activePlayer = activePlayer === playerOne ? playerTwo : playerOne);
+  console.log(activePlayer);
   const printTurn = () =>
     activePlayer === playerOne.name
-      ? console.log(`${activePlayer}'s turn!`)
-      : console.log(`${activePlayer}'s turn!`); //isn't right
-  return { switchTurn, printTurn };
+      ? console.log(`${activePlayer.name}'s turn!`)
+      : console.log(`${activePlayer.name}'s turn!`); //isn't right
+  return { switchTurn, printTurn, activePlayer };
 }
 
 const gameControl = GameController();
+console.log(gameControl.activePlayer);
 
 function playRound() {
+  gameControl.printTurn();
   updateGameboard();
   game.dropMark(playerOne.mark);
-  gameControl.printTurn();
   gameControl.switchTurn();
 }
 
 playRound();
 playRound();
-
 //DOM
 function showGameboard() {
   const boardDOM = document.querySelector(".grid");
