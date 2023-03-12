@@ -1,24 +1,25 @@
-const gameboard = (() => {
+function Gameboard() {
   const boardArr = ["", "", "", "", "", "", "", "", ""];
   const getBoard = () => boardArr;
 
-  const addMark = () => {
-    let emptyCell = "";
-    console.log(boardArr);
-    for (let i = 0; i < boardArr.length; i++) {
-      if (boardArr[i] === undefined) {
-        emptyCell = boardArr[i];
-      }
+  const dropMark = () => {
+    let availableCell;
 
-      if (boardArr[i].length === 0) return; //end game
+    for (let i = 0; i < boardArr.length; i++) {
+      if (boardArr[i] === "") {
+        availableCell = boardArr[i];
+        availableCell = playerOne.mark;
+      } else if (availableCell !== "" && availableCell === 0) {
+        return; //end game
+      }
     }
-    console.log(playerOne.mark);
-    emptyCell = playerOne.mark;
   };
 
-  return { boardArr, getBoard, addMark };
-})();
-console.log(gameboard.addMark());
+  return { boardArr, getBoard, dropMark };
+}
+
+console.log(Gameboard.dropMark()); //not a function
+
 const Player = (name, mark) => {
   return { name, mark };
 };
@@ -41,11 +42,9 @@ function updateGameboard() {
 }
 
 function playRound() {
-  let gameCount = 1;
   GameController.switchTurn;
-  addMark();
+  dropMark();
   updateGameboard();
-  gameCount++;
 }
 //DOM
 function showGameboard() {
@@ -58,14 +57,11 @@ function showGameboard() {
   });
 }
 function GameController() {
-  const switchTurn = () => {
-    if (gameCount % 2 !== 0) {
-      console.log(`${playerOne.name}'s turn!`);
-      mark = playerOne.mark;
-    } else {
-      console.log(`${playerTwo.name}'s turn!`);
-      mark = playerTwo.mark;
-    }
-    return { switchTurn };
-  };
+  let activePlayer = playerOne.name;
+
+  const switchTurn = () =>
+    (activePlayer =
+      activePlayer === playerOne.name ? playerOne.name : playerTwo.name);
+
+  return { switchTurn };
 }
