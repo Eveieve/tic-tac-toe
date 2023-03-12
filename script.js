@@ -63,5 +63,9 @@ function GameController() {
     (activePlayer =
       activePlayer === playerOne.name ? playerOne.name : playerTwo.name);
 
-  return { switchTurn };
+  const printTurn = () =>
+    activePlayer === playerOne.name
+      ? console.log(`${playerOne.name}'s turn!`)
+      : console.log(`${playerTwo.name}'s turn!`);
+  return { switchTurn, printTurn };
 }
