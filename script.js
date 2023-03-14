@@ -56,9 +56,9 @@ function playRound() {
   gameControl.switchTurn();
 }
 
-playRound();
-playRound();
-playRound();
+// playRound();
+// playRound();
+// playRound();
 //DOM
 
 function showGameboard() {
@@ -72,4 +72,11 @@ function showGameboard() {
     grid.appendChild(cell);
     console.log(mark, index);
   });
+  const cells = document.querySelectorAll(".cell");
+  console.log(cells);
+  return { cells };
 }
+
+Array.from(showGameboard().cells).forEach((cell) =>
+  cell.addEventListener("click", playRound)
+);
