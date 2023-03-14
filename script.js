@@ -9,10 +9,11 @@ function Gameboard() {
   const boardArr = [".", ".", ".", ".", ".", ".", ".", ".", "."];
   const getBoard = () => boardArr;
 
-  const dropMark = (position) => {
-    boardArr[position] = gameControl.activePlayer.mark; // assign activePlayer's mark
+  const dropMark = (index, mark) => {
+    mark = gameControl.activePlayer.mark;
+    boardArr[index] = gameControl.activePlayer.mark; // assign activePlayer's mark
   };
-
+  console.log(boardArr);
   return { getBoard, dropMark, boardArr };
 }
 const game = Gameboard();
@@ -57,15 +58,18 @@ function playRound() {
 
 playRound();
 playRound();
+playRound();
 //DOM
 
 function showGameboard() {
   console.log("show current board");
-  const boardDOM = document.querySelector(".grid");
+  const grid = document.querySelector(".grid");
   game.getBoard().forEach((mark, index) => {
-    const markDOM = document.createElement("div");
-    markDOM.textContent = `${mark}`;
-    boardDOM.appendChild(markDOM);
+    const cell = document.createElement("div");
+    cell.style.cssText = "border: 2px solid brown";
+    cell.classList.add("cell");
+    cell.textContent = `${mark}`;
+    grid.appendChild(cell);
     console.log(mark, index);
   });
 }
