@@ -5,13 +5,19 @@ const Player = (name, mark) => {
 const playerOne = Player("One", "O");
 const playerTwo = Player("Two", "X");
 
+const gameControl = GameController();
 function Gameboard() {
-  const boardArr = [".", ".", ".", ".", ".", ".", ".", ".", "."];
+  const boardArr = ["", "", "", "", "", "", "", "", ""];
   const getBoard = () => boardArr;
 
-  const dropMark = (index, mark) => {
-    mark = gameControl.activePlayer.mark;
-    boardArr[index] = gameControl.activePlayer.mark; // assign activePlayer's mark
+  const dropMark = (cellIndex) => {
+    console.log(gameControl.activePlayer.mark);
+    // let i = boardArr.indexOf(`${cell.dataset.index}`);
+    // console.log(i);
+    // console.log(boardArr[cellIndex].dataset.index);
+    boardArr.splice(cellIndex, 1, gameControl.activePlayer.mark);
+    console.log(boardArr);
+    // boardArr[cellIndex] = gameControl.activePlayer.mark; // assign activePlayer's mark
   };
   console.log(boardArr);
   return { getBoard, dropMark, boardArr };
@@ -44,10 +50,9 @@ function GameController() {
       ? (turn.textContent = `${activePlayer.name}'s turn!`)
       : (turn.textContent = `${activePlayer.name}'s turn!`);
   };
+
   return { switchTurn, printTurn, activePlayer };
 }
-
-const gameControl = GameController();
 
 function playRound() {
   updateGameboard();
@@ -56,11 +61,7 @@ function playRound() {
   gameControl.switchTurn();
 }
 
-// playRound();
-// playRound();
-// playRound();
 //DOM
-
 function showGameboard() {
   console.log("show current board");
   const grid = document.querySelector(".grid");
@@ -71,12 +72,19 @@ function showGameboard() {
     cell.textContent = `${mark}`;
     grid.appendChild(cell);
     console.log(mark, index);
+    // return { cell };
   });
   const cells = document.querySelectorAll(".cell");
   console.log(cells);
+
   return { cells };
 }
 
-Array.from(showGameboard().cells).forEach((cell) =>
-  cell.addEventListener("click", playRound)
-);
+const showGame = showGameboard();
+console.log(showGame.cells);
+showGame.cells.forEach((cell, cellIndex) => {
+  cell.addEventListener("click", () => playRound(cellIndex));
+  cell.dataset.index = `${cellIndex}`;
+  console.log(cell.dataset.index);
+});
+// console.log(cellIndex);
