@@ -12,8 +12,10 @@ function Gameboard() {
   const getBoard = () => boardArr;
   const dropMark = (cellIndex) => {
     console.log("drop marker");
-    console.log(gameControl.switchTurn().activePlayer.mark); //THIS CHANGED EVERYTHING?
-    boardArr.splice(cellIndex, 1, gameControl.switchTurn().activePlayer.mark);
+    let { activePlayer } = gameControl.switchTurn();
+    // console.log(activePlayer.mark);
+    // console.log(gameControl.activePlayer.mark); //THIS CHANGED EVERYTHING?
+    boardArr.splice(cellIndex, 1, activePlayer.mark);
     console.log(boardArr);
   };
 
@@ -29,16 +31,14 @@ function updateGameboard() {
     grid.removeChild(grid.firstChild);
   }
   showGameboard();
-  console.log(Gameboard.boardArr);
 }
 
 function GameController() {
   let activePlayer = playerOne;
 
   const switchTurn = () => {
-    console.log("switch turn!");
     activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
-    console.log(activePlayer);
+
     return { activePlayer };
   };
 
@@ -46,14 +46,14 @@ function GameController() {
     const turn = document.querySelector(".turn");
     turn.textContent = `${activePlayer.name}'s turn!`;
   };
-  return { switchTurn, activePlayer, printTurn };
+  return { switchTurn, printTurn };
 }
 
 gameControl.switchTurn();
 
 function playRound(cellIndex) {
   gameControl.printTurn();
-  gameControl.switchTurn();
+  // gameControl.switchTurn();
   game.dropMark(cellIndex);
   updateGameboard();
 }
