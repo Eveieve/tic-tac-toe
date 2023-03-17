@@ -51,6 +51,7 @@ function GameController() {
 }
 
 const modal = document.querySelector(".modal");
+
 console.log(modal);
 
 const again = document.querySelector(".again");
@@ -68,7 +69,13 @@ function evaluate() {
     console.log(`${gameControl.getActivePlayer().name} Win!`);
     turn.textContent = `${gameControl.getActivePlayer().name} Win!`;
     //end game
+
     modal.showModal();
+    const modalWinner = document.createElement("h3");
+    modalWinner.textContent = `Woohoo! ${
+      gameControl.getActivePlayer().name
+    } won this round!`;
+    modal.insertBefore(modalWinner, again);
   };
   if (
     game.boardArr[0] !== "" &&
@@ -118,7 +125,7 @@ function evaluate() {
     game.boardArr[2] === game.boardArr[6]
   )
     showWinner();
-  else return;
+  else return; // no row has the same marker
 }
 
 gameControl.switchTurn();
