@@ -53,6 +53,15 @@ function GameController() {
 const modal = document.querySelector(".modal");
 console.log(modal);
 
+const again = document.querySelector(".again");
+console.log(again);
+
+function restartGame() {
+  location.reload();
+}
+
+again.addEventListener("click", restartGame);
+
 function evaluate() {
   const turn = document.querySelector(".turn");
   const showWinner = () => {
