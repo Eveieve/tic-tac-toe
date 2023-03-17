@@ -14,7 +14,6 @@ function Gameboard() {
   const getBoard = () => boardArr;
   const dropMark = (cellIndex) => {
     console.log("drop marker");
-
     if (boardArr[cellIndex] === "") {
       boardArr.splice(cellIndex, 1, gameControl.getActivePlayer().mark);
       console.log(boardArr);
@@ -54,29 +53,12 @@ function GameController() {
 const modal = document.querySelector(".modal");
 console.log(modal);
 
-// const again = document.querySelector(".again");
-// console.log(again);
-
-// function restartGame() {
-//   game.boardArr = ["", "", "", "", "", "", "", "", ""];
-//   const cells = document.querySelectorAll(".cell");
-
-//   const cellsArr = Array.from(cells);
-//   for (let i = 0; i < cellsArr.length; i++) {
-//     cellsArr[i].remove();
-//   }
-
-//   updateGameboard();
-// }
-// again.addEventListener("click", () => {
-//   restartGame();
-//   modal.close();
-// });
-
 function evaluate() {
+  const turn = document.querySelector(".turn");
   const showWinner = () => {
     console.log(`${gameControl.getActivePlayer().name} Win!`);
-    // and end game
+    turn.textContent = `${gameControl.getActivePlayer().name} Win!`;
+    //end game
     modal.showModal();
   };
   if (
