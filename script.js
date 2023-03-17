@@ -14,10 +14,11 @@ function Gameboard() {
   const getBoard = () => boardArr;
   const dropMark = (cellIndex) => {
     console.log("drop marker");
-    // let { activePlayer } = gameControl.switchTurn();
-    boardArr.splice(cellIndex, 1, gameControl.getActivePlayer().mark);
-    console.log(boardArr);
-    // return { activePlayer };
+
+    if (boardArr[cellIndex] === "") {
+      boardArr.splice(cellIndex, 1, gameControl.getActivePlayer().mark);
+      console.log(boardArr);
+    }
   };
 
   return { getBoard, dropMark, boardArr };
@@ -31,7 +32,10 @@ function updateGameboard() {
     grid.removeChild(grid.firstChild);
   }
   showGameboard();
+  const getGrid = () => grid;
+  return { getGrid };
 }
+const update = updateGameboard();
 
 function GameController() {
   let activePlayer = playerOne;
@@ -47,10 +51,33 @@ function GameController() {
   return { switchTurn, printTurn, getActivePlayer };
 }
 
+const modal = document.querySelector(".modal");
+console.log(modal);
+
+// const again = document.querySelector(".again");
+// console.log(again);
+
+// function restartGame() {
+//   game.boardArr = ["", "", "", "", "", "", "", "", ""];
+//   const cells = document.querySelectorAll(".cell");
+
+//   const cellsArr = Array.from(cells);
+//   for (let i = 0; i < cellsArr.length; i++) {
+//     cellsArr[i].remove();
+//   }
+
+//   updateGameboard();
+// }
+// again.addEventListener("click", () => {
+//   restartGame();
+//   modal.close();
+// });
+
 function evaluate() {
   const showWinner = () => {
     console.log(`${gameControl.getActivePlayer().name} Win!`);
     // and end game
+    modal.showModal();
   };
   if (
     game.boardArr[0] !== "" &&
@@ -127,7 +154,6 @@ function showGameboard() {
   const cells = document.querySelectorAll(".cell");
   cells.forEach((cell, cellIndex) => {
     cell.addEventListener("click", () => playRound(cellIndex));
-    // cell.dataset.index = `${cellIndex}`;
     return { cellIndex };
   });
   return { cells };
