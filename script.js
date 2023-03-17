@@ -14,10 +14,10 @@ function Gameboard() {
   const getBoard = () => boardArr;
   const dropMark = (cellIndex) => {
     console.log("drop marker");
-    let { activePlayer } = gameControl.switchTurn();
-    boardArr.splice(cellIndex, 1, activePlayer.mark);
+    // let { activePlayer } = gameControl.switchTurn();
+    boardArr.splice(cellIndex, 1, gameControl.getActivePlayer().mark);
     console.log(boardArr);
-    return { activePlayer };
+    // return { activePlayer };
   };
 
   return { getBoard, dropMark, boardArr };
@@ -38,20 +38,19 @@ function GameController() {
 
   const switchTurn = () => {
     activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
-
-    return { activePlayer };
   };
-
+  const getActivePlayer = () => activePlayer;
   const printTurn = () => {
     const turn = document.querySelector(".turn");
     turn.textContent = `${activePlayer.name}'s turn!`;
   };
-  return { switchTurn, printTurn };
+  // const showWinner = () => console.log(`${activePlayer.name} Win!`);
+  return { switchTurn, printTurn, getActivePlayer };
 }
 
 function Evaluate() {
   const showWinner = () =>
-    console.log(`${gameControl.switchTurn().activePlayer.name} Win!`);
+    console.log(`${gameControl.getActivePlayer().name} Win!`);
   if (
     game.boardArr[0] !== "" &&
     game.boardArr[0] === game.boardArr[1] &&
@@ -100,14 +99,14 @@ function Evaluate() {
     game.boardArr[2] === game.boardArr[6]
   )
     showWinner();
-  else console.log("ongoing..");
+  else return;
 }
 
 gameControl.switchTurn();
 
 function playRound(cellIndex) {
   gameControl.printTurn();
-  // gameControl.switchTurn();
+  gameControl.switchTurn();
   game.dropMark(cellIndex);
   updateGameboard();
   Evaluate();
