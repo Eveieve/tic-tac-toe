@@ -17,6 +17,7 @@ function Gameboard() {
     let { activePlayer } = gameControl.switchTurn();
     boardArr.splice(cellIndex, 1, activePlayer.mark);
     console.log(boardArr);
+    return { activePlayer };
   };
 
   return { getBoard, dropMark, boardArr };
