@@ -1,29 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
   /* border: 2px solid purple; */
-  color: white;
+  color: #e5e5cb;
+  font-family: "Share Tech Mono", monospace;
 }
 h1 {
   text-align: center;
+  font-weight: 700;
 }
+
 .turn {
   display: flex;
   justify-content: space-between;
+  font-weight: 700;
+  font-size: 2rem;
+  padding: 1rem;
+}
+.print-turn {
+  font-size: 1rem;
 }
 .one,
 .two {
-  font-size: 2rem;
-  padding: 1rem;
+  font-size: 1.7rem;
+  padding: 0.5rem 1rem;
 }
 body {
   background-color: #3c2a21;
   display: grid;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
 }
-
+.print-turn {
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+}
 .grid {
   height: 30rem;
   width: 30rem;

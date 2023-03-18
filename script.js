@@ -38,7 +38,7 @@ function updateGameboard() {
 const update = updateGameboard();
 
 function GameController() {
-  // const turn = document.querySelector(".turn");
+  const printedTurn = document.querySelector(".print-turn");
   let activePlayer = playerOne;
   const printFirstTurn = () =>
     (turn.textContent = `${activePlayer.name}'s turn!`);
@@ -46,9 +46,9 @@ function GameController() {
     activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
   };
   const getActivePlayer = () => activePlayer;
-  // const highlightTurn = () => {
-  //   turn.textContent = `${activePlayer.name}'s turn!`;
-  // };
+  const printTurn = () => {
+    printedTurn.textContent = `It's ${activePlayer.name}'s turn!`;
+  };
   const one = document.querySelector(".one");
   const two = document.querySelector(".two");
   const highlightTurn = () => {
@@ -62,7 +62,13 @@ function GameController() {
       one.style.cssText = "background-color: #3C2A21";
     }
   };
-  return { printFirstTurn, switchTurn, highlightTurn, getActivePlayer };
+  return {
+    printTurn,
+    printFirstTurn,
+    switchTurn,
+    highlightTurn,
+    getActivePlayer,
+  };
 }
 
 const modal = document.querySelector(".modal");
@@ -79,16 +85,17 @@ function evaluate() {
 
   const showWinner = () => {
     console.log(`${gameControl.getActivePlayer().name} Win!`);
-    turn.textContent = `${gameControl.getActivePlayer().name} Win!`;
+    turn.textContent = `Congrats ${gameControl.getActivePlayer().name}!`;
     //show modal to end game
     modal.showModal();
     const modalWinner = document.createElement("h3");
-    modalWinner.textContent = `Woohoo! ${
+    modalWinner.textContent = `Woohoooo! ${
       gameControl.getActivePlayer().name
     } won this round!`;
     modal.style.cssText =
       "border: 2px solid #1A120B; background-color: #1A120B; border-radius: 1rem; color: white";
     modal.insertBefore(modalWinner, again);
+    //don't run printTurn when game is over!
   };
 
   const isOccupied = (item) => item !== "";
@@ -156,6 +163,7 @@ function playRound(cellIndex) {
   game.dropMark(cellIndex);
   evaluate();
   gameControl.switchTurn();
+  gameControl.printTurn();
   gameControl.highlightTurn();
   updateGameboard();
 }
@@ -172,7 +180,7 @@ function showGameboard() {
     cell.textContent = `${mark}`;
     grid.appendChild(cell);
     cell.style.cssText =
-      "display: flex; align-items: center; justify-content: center;outline: 2px solid white; font-size: 7rem;";
+      "display: flex; align-items: center; justify-content: center;outline: .2rem solid #E5E5CB; font-size: 7rem;";
   });
   const cells = document.querySelectorAll(".cell");
   cells.forEach((cell, cellIndex) => {
