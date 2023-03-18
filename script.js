@@ -50,17 +50,18 @@ function updateGameboard() {
 const update = updateGameboard();
 
 function GameController() {
+  const turn = document.querySelector(".turn");
   let activePlayer = playerOne;
-
+  const printFirstTurn = () =>
+    (turn.textContent = `${activePlayer.name}'s turn!`);
   const switchTurn = () => {
     activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
   };
   const getActivePlayer = () => activePlayer;
   const printTurn = () => {
-    const turn = document.querySelector(".turn");
     turn.textContent = `${activePlayer.name}'s turn!`;
   };
-  return { switchTurn, printTurn, getActivePlayer };
+  return { printFirstTurn, switchTurn, printTurn, getActivePlayer };
 }
 
 const modal = document.querySelector(".modal");
@@ -148,12 +149,12 @@ function evaluate() {
     modal.showModal();
   } // no row has the same marker
 }
+gameControl.printFirstTurn();
 
 function playRound(cellIndex) {
   game.dropMark(cellIndex);
   gameControl.switchTurn();
   gameControl.printTurn();
-
   updateGameboard();
   evaluate();
 }
