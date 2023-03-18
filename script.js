@@ -15,10 +15,17 @@ function Gameboard() {
   const getBoard = () => boardArr;
   const dropMark = (cellIndex) => {
     console.log("drop marker");
+<<<<<<< HEAD
     if (boardArr[cellIndex] === "") {
       boardArr.splice(cellIndex, 1, gameControl.getActivePlayer().mark);
       console.log(boardArr);
     }
+=======
+    // let { activePlayer } = gameControl.switchTurn();
+    boardArr.splice(cellIndex, 1, gameControl.getActivePlayer().mark);
+    console.log(boardArr);
+    // return { activePlayer };
+>>>>>>> 041127fa9ea9414d5cf1ba8e8312216009f7b8dc
   };
 
   return { getBoard, dropMark, boardArr };
@@ -69,6 +76,7 @@ function GameController() {
     highlightTurn,
     getActivePlayer,
   };
+<<<<<<< HEAD
 }
 
 const modal = document.querySelector(".modal");
@@ -100,6 +108,15 @@ function evaluate() {
 
   const isOccupied = (item) => item !== "";
 
+=======
+  // const showWinner = () => console.log(`${activePlayer.name} Win!`);
+  return { switchTurn, printTurn, getActivePlayer };
+}
+
+function Evaluate() {
+  const showWinner = () =>
+    console.log(`${gameControl.getActivePlayer().name} Win!`);
+>>>>>>> 041127fa9ea9414d5cf1ba8e8312216009f7b8dc
   if (
     game.boardArr[0] !== "" &&
     game.boardArr[0] === game.boardArr[1] &&
@@ -148,6 +165,7 @@ function evaluate() {
     game.boardArr[2] === game.boardArr[6]
   )
     showWinner();
+<<<<<<< HEAD
   else if (game.boardArr.every(isOccupied)) {
     const modalTie = document.createElement("h3");
     modalTie.textContent = "Tie!";
@@ -156,10 +174,18 @@ function evaluate() {
     modal.insertBefore(modalTie, again);
     modal.showModal();
   } // no row has the same marker
+=======
+  else return;
+>>>>>>> 041127fa9ea9414d5cf1ba8e8312216009f7b8dc
 }
 gameControl.printFirstTurn();
 
 function playRound(cellIndex) {
+<<<<<<< HEAD
+=======
+  gameControl.printTurn();
+  gameControl.switchTurn();
+>>>>>>> 041127fa9ea9414d5cf1ba8e8312216009f7b8dc
   game.dropMark(cellIndex);
   evaluate();
   gameControl.switchTurn();
