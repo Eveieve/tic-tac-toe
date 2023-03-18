@@ -81,7 +81,7 @@ function restartGame() {
 again.addEventListener("click", restartGame);
 
 function evaluate() {
-  const turn = document.querySelector(".turn");
+  // const turn = document.querySelector(".turn");
 
   const showWinner = () => {
     console.log(`${gameControl.getActivePlayer().name} Win!`);

@@ -1,9 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
-
+:root {
+  --brown: #3c2a21;
+  --dark-brown: #1a120b;
+  --yellow: #d5cea3;
+  --light-yellow: #e5e5cb;
+}
 * {
   box-sizing: border-box;
   color: #e5e5cb;
   font-family: "Share Tech Mono", monospace;
+}
+html {
+  height: 100%;
 }
 h1 {
   text-align: center;
@@ -15,7 +23,6 @@ h1 {
   justify-content: space-between;
   font-weight: 700;
   font-size: 2rem;
-  padding: 1rem;
 }
 .print-turn {
   font-size: 1rem;
@@ -35,7 +42,7 @@ body {
 .print-turn {
   display: flex;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 .grid {
   height: 30rem;
@@ -44,6 +51,11 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   font-family: "Courier New", Courier, monospace;
+}
+.cell:hover {
+  cursor: pointer;
+  background-color: var(--brown);
+  opacity: 0.5;
 }
 .modal {
   text-align: center;
