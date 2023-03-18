@@ -2,12 +2,25 @@ const Player = (name, mark) => {
   return { name, mark };
 };
 
-const playerOne = Player("Player One", "O");
-const playerTwo = Player("Player Two", "X");
+const playerOne = Player("Player One", "X");
+const playerTwo = Player("Player Two", "O");
 
 const gameControl = GameController();
 const game = Gameboard();
 const showGame = showGameboard();
+// const user = getUser();
+const startBtn = document.querySelector(".start");
+// startBtn.addEventListener("click", getUser);
+
+// function getUser() {
+//   let getPlayerOne = prompt("Who's Player One (marker O)?");
+//   let getPlayerTwo = prompt("Who's Player Two (marker X)?");
+
+//   const playerOne = Player(getPlayerOne, "0");
+//   const playerTwo = Player(getPlayerTwo, "X");
+
+//   return { playerOne, playerTwo };
+// }
 
 function Gameboard() {
   const boardArr = ["", "", "", "", "", "", "", "", ""];
@@ -77,6 +90,9 @@ function evaluate() {
     } won this round!`;
     modal.insertBefore(modalWinner, again);
   };
+
+  const isOccupied = (item) => item !== "";
+
   if (
     game.boardArr[0] !== "" &&
     game.boardArr[0] === game.boardArr[1] &&
@@ -125,15 +141,19 @@ function evaluate() {
     game.boardArr[2] === game.boardArr[6]
   )
     showWinner();
-  else return; // no row has the same marker
+  else if (game.boardArr.every(isOccupied)) {
+    const modalTie = document.createElement("h3");
+    modalTie.textContent = "Tie!";
+    modal.insertBefore(modalTie, again);
+    modal.showModal();
+  } // no row has the same marker
 }
 
-gameControl.switchTurn();
-
 function playRound(cellIndex) {
-  gameControl.printTurn();
-  gameControl.switchTurn();
   game.dropMark(cellIndex);
+  gameControl.switchTurn();
+  gameControl.printTurn();
+
   updateGameboard();
   evaluate();
 }
