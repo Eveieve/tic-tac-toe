@@ -2,7 +2,6 @@
 
 * {
   box-sizing: border-box;
-  /* margin: 0; */
   color: #e5e5cb;
   font-family: "Share Tech Mono", monospace;
 }
@@ -46,7 +45,10 @@ body {
   grid-template-rows: 1fr 1fr 1fr;
   font-family: "Courier New", Courier, monospace;
 }
-
+.modal {
+  text-align: center;
+  width: 28rem;
+}
 .modal::backdrop {
   background: rgb(0 0 0 / 0.5);
 }
