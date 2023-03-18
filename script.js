@@ -41,7 +41,7 @@ function GameController() {
   const printedTurn = document.querySelector(".print-turn");
   let activePlayer = playerOne;
   const printFirstTurn = () =>
-    (turn.textContent = `${activePlayer.name}'s turn!`);
+    (printTurn.textContent = `${activePlayer.name}'s turn!`);
   const switchTurn = () => {
     activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
   };
