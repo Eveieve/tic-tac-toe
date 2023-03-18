@@ -163,12 +163,14 @@ function playRound(cellIndex) {
 function showGameboard() {
   console.log("show current board");
   const grid = document.querySelector(".grid");
+  grid.style.cssText = "overflow: hidden";
   game.getBoard().forEach((mark) => {
     const cell = document.createElement("div");
-    cell.style.cssText = "border: 2px solid brown";
+
     cell.classList.add("cell");
     cell.textContent = `${mark}`;
     grid.appendChild(cell);
+    cell.style.cssText = "outline: 2px solid #000";
   });
   const cells = document.querySelectorAll(".cell");
   cells.forEach((cell, cellIndex) => {

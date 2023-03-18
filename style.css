@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  border: 2px solid purple;
+  /* border: 2px solid purple; */
 }
 body {
   height: 100vh;
@@ -13,10 +13,10 @@ body {
   align-items: center;
 }
 .grid {
-  outline: none;
   height: 30rem;
   width: 30rem;
-  border: 5px solid brown;
+  outline: 0px solid white;
+  /* border: 5px solid brown; */
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
