@@ -8,19 +8,7 @@ const playerTwo = Player("Player Two", "O");
 const gameControl = GameController();
 const game = Gameboard();
 const showGame = showGameboard();
-// const user = getUser();
 const startBtn = document.querySelector(".start");
-// startBtn.addEventListener("click", getUser);
-
-// function getUser() {
-//   let getPlayerOne = prompt("Who's Player One (marker O)?");
-//   let getPlayerTwo = prompt("Who's Player Two (marker X)?");
-
-//   const playerOne = Player(getPlayerOne, "0");
-//   const playerTwo = Player(getPlayerTwo, "X");
-
-//   return { playerOne, playerTwo };
-// }
 
 function Gameboard() {
   const boardArr = ["", "", "", "", "", "", "", "", ""];
@@ -66,15 +54,11 @@ function GameController() {
 
 const modal = document.querySelector(".modal");
 
-console.log(modal);
-
 const again = document.querySelector(".again");
-console.log(again);
 
 function restartGame() {
   location.reload();
 }
-
 again.addEventListener("click", restartGame);
 
 function evaluate() {
@@ -82,8 +66,7 @@ function evaluate() {
   const showWinner = () => {
     console.log(`${gameControl.getActivePlayer().name} Win!`);
     turn.textContent = `${gameControl.getActivePlayer().name} Win!`;
-    //end game
-
+    //show modal to end game
     modal.showModal();
     const modalWinner = document.createElement("h3");
     modalWinner.textContent = `Woohoo! ${
@@ -149,14 +132,14 @@ function evaluate() {
     modal.showModal();
   } // no row has the same marker
 }
-gameControl.printFirstTurn();
+// gameControl.printFirstTurn();
 
 function playRound(cellIndex) {
   game.dropMark(cellIndex);
+  evaluate();
   gameControl.switchTurn();
   gameControl.printTurn();
   updateGameboard();
-  evaluate();
 }
 
 //DOM

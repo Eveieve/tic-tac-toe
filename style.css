@@ -15,9 +15,11 @@ body {
 .grid {
   height: 30rem;
   width: 30rem;
-  outline: 0px solid white;
-  /* border: 5px solid brown; */
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+}
+
+.modal::backdrop {
+  background: rgb(0 0 0 / 0.5);
 }
