@@ -72,6 +72,8 @@ function evaluate() {
     modalWinner.textContent = `Woohoo! ${
       gameControl.getActivePlayer().name
     } won this round!`;
+    modal.style.cssText =
+      "border: 2px solid white; background-color: black; border-radius: 1rem; color: white";
     modal.insertBefore(modalWinner, again);
   };
 
@@ -132,7 +134,7 @@ function evaluate() {
     modal.showModal();
   } // no row has the same marker
 }
-// gameControl.printFirstTurn();
+gameControl.printFirstTurn();
 
 function playRound(cellIndex) {
   game.dropMark(cellIndex);
@@ -153,7 +155,8 @@ function showGameboard() {
     cell.classList.add("cell");
     cell.textContent = `${mark}`;
     grid.appendChild(cell);
-    cell.style.cssText = "outline: 2px solid #000";
+    cell.style.cssText =
+      "display: flex; align-items: center; justify-content: center;outline: 2px solid white; font-size: 7rem;";
   });
   const cells = document.querySelectorAll(".cell");
   cells.forEach((cell, cellIndex) => {

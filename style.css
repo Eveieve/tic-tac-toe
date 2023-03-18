@@ -2,16 +2,17 @@
   box-sizing: border-box;
   margin: 0;
   /* border: 2px solid purple; */
+  color: white;
 }
+
 body {
-  height: 100vh;
-  /* background-color: black; */
-}
-body {
+  background-color: black;
   display: grid;
   justify-content: center;
   align-items: center;
+  gap: 3rem;
 }
+
 .grid {
   height: 30rem;
   width: 30rem;
@@ -22,4 +23,10 @@ body {
 
 .modal::backdrop {
   background: rgb(0 0 0 / 0.5);
+}
+
+.again {
+  background-color: black;
+  border-radius: 0.5rem;
+  color: white;
 }
