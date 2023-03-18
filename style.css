@@ -4,9 +4,20 @@
   /* border: 2px solid purple; */
   color: white;
 }
-
+h1 {
+  text-align: center;
+}
+.turn {
+  display: flex;
+  justify-content: space-between;
+}
+.one,
+.two {
+  font-size: 2rem;
+  padding: 1rem;
+}
 body {
-  background-color: black;
+  background-color: #3c2a21;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -19,6 +30,7 @@ body {
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .modal::backdrop {
@@ -26,7 +38,8 @@ body {
 }
 
 .again {
-  background-color: black;
+  background-color: #1a120b;
+  padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
   color: white;
 }

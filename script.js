@@ -38,7 +38,7 @@ function updateGameboard() {
 const update = updateGameboard();
 
 function GameController() {
-  const turn = document.querySelector(".turn");
+  // const turn = document.querySelector(".turn");
   let activePlayer = playerOne;
   const printFirstTurn = () =>
     (turn.textContent = `${activePlayer.name}'s turn!`);
@@ -46,10 +46,23 @@ function GameController() {
     activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
   };
   const getActivePlayer = () => activePlayer;
-  const printTurn = () => {
-    turn.textContent = `${activePlayer.name}'s turn!`;
+  // const highlightTurn = () => {
+  //   turn.textContent = `${activePlayer.name}'s turn!`;
+  // };
+  const one = document.querySelector(".one");
+  const two = document.querySelector(".two");
+  const highlightTurn = () => {
+    if (getActivePlayer() === playerOne) {
+      one.style.cssText =
+        "background-color: #D5CEA3; color: #3C2A21; border-radius: 1rem";
+      two.style.cssText = "background-color: #3C2A21;";
+    } else {
+      two.style.cssText =
+        "background-color: #D5CEA3; color: #3C2A21; border-radius: 1rem";
+      one.style.cssText = "background-color: #3C2A21";
+    }
   };
-  return { printFirstTurn, switchTurn, printTurn, getActivePlayer };
+  return { printFirstTurn, switchTurn, highlightTurn, getActivePlayer };
 }
 
 const modal = document.querySelector(".modal");
@@ -63,6 +76,7 @@ again.addEventListener("click", restartGame);
 
 function evaluate() {
   const turn = document.querySelector(".turn");
+
   const showWinner = () => {
     console.log(`${gameControl.getActivePlayer().name} Win!`);
     turn.textContent = `${gameControl.getActivePlayer().name} Win!`;
@@ -73,7 +87,7 @@ function evaluate() {
       gameControl.getActivePlayer().name
     } won this round!`;
     modal.style.cssText =
-      "border: 2px solid white; background-color: black; border-radius: 1rem; color: white";
+      "border: 2px solid #1A120B; background-color: #1A120B; border-radius: 1rem; color: white";
     modal.insertBefore(modalWinner, again);
   };
 
@@ -130,6 +144,8 @@ function evaluate() {
   else if (game.boardArr.every(isOccupied)) {
     const modalTie = document.createElement("h3");
     modalTie.textContent = "Tie!";
+    modal.style.cssText =
+      "border: 2px solid #1A120B; background-color: #1A120B; border-radius: 1rem; color: white";
     modal.insertBefore(modalTie, again);
     modal.showModal();
   } // no row has the same marker
@@ -140,7 +156,7 @@ function playRound(cellIndex) {
   game.dropMark(cellIndex);
   evaluate();
   gameControl.switchTurn();
-  gameControl.printTurn();
+  gameControl.highlightTurn();
   updateGameboard();
 }
 
