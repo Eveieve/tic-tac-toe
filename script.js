@@ -158,12 +158,15 @@ function evaluate() {
 }
 
 function playRound(cellIndex) {
-  gameControl.printTurn();
-  gameControl.highlightTurn();
+  // gameControl.printTurn();
+  // gameControl.highlightTurn();
   game.dropMark(cellIndex);
+  updateGameboard();
   evaluate();
   gameControl.switchTurn();
-  updateGameboard();
+  showGame.enableCell();
+  gameControl.printTurn();
+  gameControl.highlightTurn();
 }
 
 //DOM
@@ -207,5 +210,3 @@ startBtn.addEventListener("click", () => {
   FirstTurn();
   showGame.enableCell();
 });
-
-showGame.enableCell();
