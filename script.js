@@ -47,6 +47,7 @@ function GameController() {
   const getActivePlayer = () => activePlayer;
   const printTurn = () => {
     printedTurn.textContent = `It's ${activePlayer.name}'s turn!`;
+    inform.replaceWith(printedTurn);
   };
   const one = document.querySelector(".one");
   const two = document.querySelector(".two");
