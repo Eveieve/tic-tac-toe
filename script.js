@@ -204,9 +204,10 @@ function FirstTurn() {
   gameControl.printTurn();
   gameControl.highlightTurn();
 }
-
+const inform = document.querySelector(".inform");
 const startBtn = document.querySelector(".start");
 startBtn.addEventListener("click", () => {
   FirstTurn();
   showGame.enableCell();
+  inform.style.display = "none";
 });
