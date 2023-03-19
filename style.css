@@ -7,22 +7,34 @@
 }
 * {
   box-sizing: border-box;
-  color: #e5e5cb;
+  color: var(--light-yellow);
   font-family: "Share Tech Mono", monospace;
 }
-html {
+html,
+body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: grid;
+  /* gap: 1rem; */
+  align-content: center;
+  justify-items: center;
 }
 h1 {
-  text-align: center;
+  /* margin-top: 0; */
   font-weight: 700;
 }
 
 .turn {
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
   font-weight: 700;
   font-size: 2rem;
+  margin-bottom: 3rem;
+  margin-top: 4rem;
 }
 .print-turn {
   font-size: 1rem;
@@ -31,13 +43,16 @@ h1 {
 .two {
   font-size: 1.7rem;
   padding: 0.5rem 1rem;
+  box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0.8rem;
 }
 body {
+  margin: 0;
   background-color: #3c2a21;
   display: grid;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  /* gap: 2rem; */
 }
 .print-turn {
   display: flex;
@@ -47,12 +62,17 @@ body {
 .grid {
   height: 30rem;
   width: 30rem;
+
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   font-family: "Courier New", Courier, monospace;
 }
-.cell:hover {
+.cell,
+.cell-empty {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+}
+.cell-empty:hover {
   cursor: pointer;
   background-color: var(--brown);
   opacity: 0.5;
@@ -60,6 +80,7 @@ body {
 .modal {
   text-align: center;
   width: 28rem;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.3);
 }
 .modal::backdrop {
   background: rgb(0 0 0 / 0.5);
@@ -70,4 +91,5 @@ body {
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
   color: white;
+  cursor: pointer;
 }
