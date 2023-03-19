@@ -156,7 +156,6 @@ function evaluate() {
     modal.showModal();
   } // no row has the same marker
 }
-// gameControl.printFirstTurn();
 
 function playRound(cellIndex) {
   gameControl.printTurn();
@@ -171,7 +170,7 @@ function playRound(cellIndex) {
 function showGameboard() {
   console.log("show current board");
   const grid = document.querySelector(".grid");
-  grid.style.cssText = "overflow: hidden";
+
   game.getBoard().forEach((mark) => {
     const cell = document.createElement("div");
 
@@ -181,25 +180,32 @@ function showGameboard() {
     cell.style.cssText =
       "display: flex; align-items: center; justify-content: center; border-radius: .rem; font-size: 7rem;";
   });
-  const cells = document.querySelectorAll(".cell");
 
-  cells.forEach((cell, cellIndex) => {
-    cell.addEventListener("click", () => {
-      if (cell.textContent === "") playRound(cellIndex);
+  const enableCell = () => {
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach((cell, cellIndex) => {
+      cell.addEventListener("click", () => {
+        if (cell.textContent === "") playRound(cellIndex);
+      });
+      cell.addEventListener("mouseover", () => {
+        if (cell.textContent === "") {
+          cell.className = "cell-empty";
+        } else cell.className = "cell";
+      });
     });
-    cell.addEventListener("mouseover", () => {
-      if (cell.textContent === "") {
-        cell.className = "cell-empty";
-      } else cell.className = "cell";
-    });
-  });
+  };
+  return { enableCell };
+}
+
+function FirstTurn() {
+  gameControl.printTurn();
+  gameControl.highlightTurn();
 }
 
 const startBtn = document.querySelector(".start");
-startBtn.addEventListener("click", FirstRound);
+startBtn.addEventListener("click", () => {
+  FirstTurn();
+  showGame.enableCell();
+});
 
-function FirstRound(cellIndex) {
-  gameControl.printTurn();
-  gameControl.highlightTurn();
-  game.dropMark(cellIndex);
-}
+showGame.enableCell();
