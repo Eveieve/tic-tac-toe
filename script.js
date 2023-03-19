@@ -2,8 +2,8 @@ const Player = (name, mark) => {
   return { name, mark };
 };
 
-const playerOne = Player("Player One", "X");
-const playerTwo = Player("Player Two", "O");
+const playerOne = Player("Player 1", "X");
+const playerTwo = Player("Player 2", "O");
 
 const gameControl = GameController();
 const game = Gameboard();
@@ -206,8 +206,12 @@ function FirstTurn() {
 }
 const inform = document.querySelector(".inform");
 const startBtn = document.querySelector(".start");
-startBtn.addEventListener("click", () => {
-  FirstTurn();
-  showGame.enableCell();
-  inform.style.display = "none";
-});
+startBtn.addEventListener(
+  "click",
+  () => {
+    FirstTurn();
+    showGame.enableCell();
+    inform.style.display = "none";
+  },
+  { once: true }
+);

@@ -28,6 +28,13 @@ body {
   padding: 0;
   transition: 1s;
 }
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+  align-items: center;
+}
+
 .container {
   display: grid;
   align-content: center;
