@@ -26,7 +26,10 @@ h1 {
   /* margin-top: 0; */
   font-weight: 700;
 }
-
+.start {
+  background-color: var(--dark-brown);
+  cursor: pointer;
+}
 .turn {
   display: flex;
   justify-content: space-between;
@@ -34,7 +37,7 @@ h1 {
   font-weight: 700;
   font-size: 2rem;
   margin-bottom: 3rem;
-  margin-top: 4rem;
+  margin-top: 3rem;
 }
 .print-turn {
   font-size: 1rem;

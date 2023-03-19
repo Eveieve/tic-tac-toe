@@ -8,7 +8,6 @@ const playerTwo = Player("Player Two", "O");
 const gameControl = GameController();
 const game = Gameboard();
 const showGame = showGameboard();
-const startBtn = document.querySelector(".start");
 
 function Gameboard() {
   const boardArr = ["", "", "", "", "", "", "", "", ""];
@@ -40,8 +39,8 @@ const update = updateGameboard();
 function GameController() {
   const printedTurn = document.querySelector(".print-turn");
   let activePlayer = playerOne;
-  const printFirstTurn = () =>
-    (printTurn.textContent = `${activePlayer.name}'s turn!`);
+  // const printFirstTurn = () =>
+  //   (printTurn.textContent = `${activePlayer.name}'s turn!`);
   const switchTurn = () => {
     activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
   };
@@ -64,7 +63,7 @@ function GameController() {
   };
   return {
     printTurn,
-    printFirstTurn,
+    // printFirstTurn,
     switchTurn,
     highlightTurn,
     getActivePlayer,
@@ -157,14 +156,14 @@ function evaluate() {
     modal.showModal();
   } // no row has the same marker
 }
-gameControl.printFirstTurn();
+// gameControl.printFirstTurn();
 
 function playRound(cellIndex) {
+  gameControl.printTurn();
+  gameControl.highlightTurn();
   game.dropMark(cellIndex);
   evaluate();
   gameControl.switchTurn();
-  gameControl.printTurn();
-  gameControl.highlightTurn();
   updateGameboard();
 }
 
@@ -194,4 +193,13 @@ function showGameboard() {
       } else cell.className = "cell";
     });
   });
+}
+
+const startBtn = document.querySelector(".start");
+startBtn.addEventListener("click", FirstRound);
+
+function FirstRound(cellIndex) {
+  gameControl.printTurn();
+  gameControl.highlightTurn();
+  game.dropMark(cellIndex);
 }
