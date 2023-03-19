@@ -179,7 +179,7 @@ function showGameboard() {
     cell.textContent = `${mark}`;
     grid.appendChild(cell);
     cell.style.cssText =
-      "display: flex; align-items: center; justify-content: center;outline: .1rem solid #E5E5CB; font-size: 7rem;";
+      "display: flex; align-items: center; justify-content: center; border-radius: .rem; font-size: 7rem;";
   });
   const cells = document.querySelectorAll(".cell");
 
