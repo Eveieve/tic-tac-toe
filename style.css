@@ -143,3 +143,10 @@ body {
   color: white;
   cursor: pointer;
 }
+img[src$="svg"] {
+  width: 2rem;
+  height: 2rem;
+}
+footer {
+  text-align: center;
+}
