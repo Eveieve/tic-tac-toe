@@ -73,13 +73,6 @@ function GameController() {
 
 const modal = document.querySelector(".modal");
 
-const again = document.querySelector(".again");
-
-function restartGame() {
-  location.reload();
-}
-again.addEventListener("click", restartGame);
-
 function evaluate() {
   const turn = document.querySelector(".turn");
 
@@ -159,8 +152,6 @@ function evaluate() {
 }
 
 function playRound(cellIndex) {
-  // gameControl.printTurn();
-  // gameControl.highlightTurn();
   game.dropMark(cellIndex);
   updateGameboard();
   evaluate();
@@ -216,3 +207,10 @@ startBtn.addEventListener(
   },
   { once: true }
 );
+
+const again = document.querySelector(".again");
+
+function restartGame() {
+  location.reload();
+}
+again.addEventListener("click", restartGame);
