@@ -200,6 +200,7 @@ startBtn.addEventListener(
   "click",
   () => {
     pageTwo.className = "page-two-shown";
+
     FirstTurn();
     showGame.enableCell();
     inform.style.display = "none";
