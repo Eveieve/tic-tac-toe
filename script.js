@@ -39,8 +39,6 @@ const update = updateGameboard();
 function GameController() {
   const printedTurn = document.querySelector(".print-turn");
   let activePlayer = playerOne;
-  // const printFirstTurn = () =>
-  //   (printTurn.textContent = `${activePlayer.name}'s turn!`);
   const switchTurn = () => {
     activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
   };
@@ -64,7 +62,6 @@ function GameController() {
   };
   return {
     printTurn,
-    // printFirstTurn,
     switchTurn,
     highlightTurn,
     getActivePlayer,
@@ -91,7 +88,7 @@ function evaluate() {
     //don't run printTurn when game is over!
   };
 
-  const isOccupied = (item) => item !== "";
+  const checkOccupied = (item) => item !== "";
 
   if (
     game.boardArr[0] !== "" &&
@@ -141,7 +138,7 @@ function evaluate() {
     game.boardArr[2] === game.boardArr[6]
   )
     showWinner();
-  else if (game.boardArr.every(isOccupied)) {
+  else if (game.boardArr.every(checkOccupied)) {
     const modalTie = document.createElement("h3");
     modalTie.textContent = "Tie!";
     modal.style.cssText =
@@ -198,9 +195,11 @@ function FirstTurn() {
 }
 const inform = document.querySelector(".inform");
 const startBtn = document.querySelector(".start");
+const pageTwo = document.querySelector(".page-two-hidden");
 startBtn.addEventListener(
   "click",
   () => {
+    pageTwo.className = "page-two-shown";
     FirstTurn();
     showGame.enableCell();
     inform.style.display = "none";

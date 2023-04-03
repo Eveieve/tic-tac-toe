@@ -28,6 +28,9 @@ body {
   padding: 0;
   transition: 1s;
 }
+.page-two-hidden {
+  display: none;
+}
 .top {
   display: flex;
 
