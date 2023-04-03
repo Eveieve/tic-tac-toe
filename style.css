@@ -53,6 +53,7 @@ body {
 h1 {
   font-weight: 700;
   transform: rotate(3);
+  font-size: 3rem;
 }
 .start {
   font-size: 1rem;
@@ -70,6 +71,11 @@ h1 {
 .start:hover {
   opacity: 0.5;
 }
+.animate-bob:hover,
+.animate-bob-turn,
+.animate-bob-auto:placeholder-shown {
+  animation: 0.75s ease-in-out infinite bob;
+}
 .inform {
   display: flex;
   justify-content: space-between;
@@ -78,6 +84,7 @@ h1 {
   font-size: 1.2rem;
   animation-duration: 0.5s;
   animation-name: slidein;
+  font-weight: 700;
 }
 .turn {
   display: flex;

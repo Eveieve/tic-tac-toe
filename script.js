@@ -52,12 +52,12 @@ function GameController() {
   const highlightTurn = () => {
     if (getActivePlayer() === playerOne) {
       one.style.cssText =
-        "background-color: var(--light-yellow); color: #3C2A21; border-radius: 1rem";
-      two.style.cssText = "background-color: var(--brown); opacity:.7";
+        "background-color: var(--light-yellow); color: #3C2A21; border-radius: 1rem;transform: scale(1.3)";
+      two.style.cssText = "background-color: var(--light-yellow); ";
     } else {
       two.style.cssText =
-        "background-color: var(--light-yellow); color: #3C2A21; border-radius: 1rem";
-      one.style.cssText = "background-color: var(--brown); opacity:.7";
+        "background-color: var(--light-yellow); color: #3C2A21; border-radius: 1rem;transform: scale(1.3)";
+      one.style.cssText = "background-color: var(--light-yellow); ";
     }
   };
   return {
