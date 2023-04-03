@@ -52,12 +52,12 @@ function GameController() {
   const highlightTurn = () => {
     if (getActivePlayer() === playerOne) {
       one.style.cssText =
-        "background-color: #D5CEA3; color: #3C2A21; border-radius: 1rem";
-      two.style.cssText = "background-color: #3C2A21;";
+        "background-color: var(--light-yellow); color: #3C2A21; border-radius: 1rem";
+      two.style.cssText = "background-color: var(--brown); opacity:.7";
     } else {
       two.style.cssText =
-        "background-color: #D5CEA3; color: #3C2A21; border-radius: 1rem";
-      one.style.cssText = "background-color: #3C2A21";
+        "background-color: var(--light-yellow); color: #3C2A21; border-radius: 1rem";
+      one.style.cssText = "background-color: var(--brown); opacity:.7";
     }
   };
   return {
@@ -83,7 +83,7 @@ function evaluate() {
       gameControl.getActivePlayer().name
     } won this round!`;
     modal.style.cssText =
-      "border: 2px solid #1A120B; background-color: #1A120B; border-radius: 1rem; color: white";
+      "border: 2px solid #1A120B; background-color: var(--light-yellow); border-radius: 1rem; color: white";
     modal.insertBefore(modalWinner, again);
     //don't run printTurn when game is over!
   };
@@ -142,7 +142,7 @@ function evaluate() {
     const modalTie = document.createElement("h3");
     modalTie.textContent = "Tie!";
     modal.style.cssText =
-      "border: 2px solid #1A120B; background-color: #1A120B; border-radius: 1rem; color: white";
+      "border: 2px solid #1A120B; background-color: var(--light-yellow); border-radius: 1rem; color: white";
     modal.insertBefore(modalTie, again);
     modal.showModal();
   } // no row has the same marker
